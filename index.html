@@ -1,13 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Таблица товаров</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #2563eb;
+            color: white;
+        }
+
+        tr:hover td {
+            background: #eff6ff;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        button {
+            display: block;
+            margin: 25px auto 0;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 15px;
+            }
+
+            th,
+            td {
+                padding: 10px 6px;
+            }
+        }
+    </style>
 </head>
 
 <body>
+
+    <div class="container">
+        <h1>Товары</h1>
+        <p class="description">Список товаров и их количество</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Товар</th>
+                    <th>Цена</th>
+                    <th>Количество</th>
+                    <th>Сумма</th>
+                </tr>
+            </thead>
+
+            <tbody id="product-list">
+                <tr>
+                    <td>Computer</td>
+                    <td>1600</td>
+                    <td>3</td>
+                    <td>4800</td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>12</td>
+                    <td>2</td>
+                    <td>24</td>
+                </tr>
+                <tr>
+                    <td>Pipe</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="total">
+            Общая сумма: <span id="total">4825</span>
+        </div>
+
+        <button onclick="showMessage()">Показать товары</button>
+    </div>
+
+    <script>
+        function showMessage() {
+            const rows = document.querySelectorAll("#product-list tr");
+            let message = "Список товаров:\n\n";
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll("td");
+                message += `${cells[0].textContent}: цена ${cells[1].textContent}, количество ${cells[2].textContent}\n`;
+            });
+
+            alert(message);
+        }
+    </script>
 
 </body>
 
